@@ -1,3 +1,11 @@
+var remainingGuesses = document.getElementById('remaining-guesses') 
+var incorrectLetters = document.getElementById('incorrect-letters')
+var wins = document.getElementById('wins')
+var previousWord = document.getElementById('previous-word')
+
+var correct = 0
+var incorrect = 0
+
 var words = [
   'bananas',
   'grapes',
@@ -16,13 +24,13 @@ var words = [
 
 /*Select a word at random from "words" array*/
 var random_index = Math.floor(Math.random() * words.length);
-var obj = words[random_index];
+var randomWord = words[random_index];
 
 
 /*place it in word to guess element w/ letter replaced with underscores*/
 
 var wordToGuess = document.querySelector('h2')
-wordToGuess.textContent = (obj.replace(/[a-z]/g, '_'))
+wordToGuess.textContent = (randomWord.replace(/[a-z]/g, '_'))
 
 
 /*display 10 remaining guesses in remaining-guesses*/
@@ -37,20 +45,25 @@ if no - incorrect guessed letter should be added to incorrect-letters
 
 document.onkeyup = function(e) {
 var key = e.key.toLowerCase()
-wordToGuess.textContent = key + (obj.replace(/[a-z]/g, '_'))
  
+if (randomWord.includes(key)) {
+  randomWord.textContent = (key) 
+  // handle correct guess
+} else {
+  incorrect++
+  incorrectLetters.textContent += ` ${e.code}`
+  remainingGuesses.textContent = (10 - incorrect) 
+  // handle incorrect guess
 }
- 
-/*
-variables 
+}
 
-var wordToGuess = document.getElementById('word-to-guess')
+
 var remainingGuesses = document.getElementById('remaining-guesses') 
 var incorrectLetters = document.getElementById('incorrect-letters')
 var wins = document.getElementById('wins')
 var previousWord = document.getElementById('previous-word')
 
+
 var correct = 0
 var incorrect = 0
 
-*/
