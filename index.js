@@ -20,7 +20,7 @@ var wordToGuess = document.querySelector('h2 > ')
 wordToGuess.textContent = ('_____')*/
 
 /*Select a word at random from "words" array*/
-var random_index = Math.floor(Math.random() * 11);
+var random_index = Math.floor(Math.random() * words.length);
 var obj = words[random_index];
 
 
@@ -30,7 +30,19 @@ var wordToGuess = document.querySelector('h2')
 wordToGuess.textContent = (obj.replace(/[a-z]/g, '_'))
 
 
-/*display remaining guesses in remaining-guesses*/
+/*display 10 remaining guesses in remaining-guesses*/
+
+var remainingGuesses = document.getElementById('remaining-guesses');remainingGuesses.textContent = (10)
+
+/*when user guesses a letter, check whether letter is included in the word
+if yes- replace underscore with letter
+if no - incorrect guessed letter should be added to incorrect-letters
+- remaining-guesses should reflect one fewer remaining guess*/
+
+document.onkeyup = function(e) {
+  var key = e.key.toLowerCase()
+  wordToGuess.textContent = key
+  }
 
 /*var wordToGuess = document.getElementById('word-to-guess')
 var remainingGuesses = document.getElementById('remaining-guesses') 
