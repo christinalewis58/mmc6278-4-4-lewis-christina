@@ -34,11 +34,13 @@ if yes- replace underscore with letter
 if no - incorrect guessed letter should be added to incorrect-letters
 - remaining-guesses should reflect one fewer remaining guess*/
 
-document.onkeyup = function(e) {
-  var key = e.key.toLowerCase()
-  wordToGuess.textContent = key
-  }
 
+document.onkeyup = function(e) {
+var key = e.key.toLowerCase()
+wordToGuess.textContent = key + (obj.replace(/[a-z]/g, '_'))
+ 
+}
+ 
 /*
 variables 
 
