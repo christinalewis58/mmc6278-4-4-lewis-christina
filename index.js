@@ -45,25 +45,21 @@ if no - incorrect guessed letter should be added to incorrect-letters
 
 document.onkeyup = function(e) {
 var key = e.key.toLowerCase()
- 
+  // handle correct guess - stuck on line 50
 if (randomWord.includes(key)) {
-  randomWord.textContent = (key) 
-  // handle correct guess
+  wordToGuess.textContent = randomWord.replace(words, e.key.toLowerCase)
+  // handle incorrect guess
 } else {
   incorrect++
-  incorrectLetters.textContent += ` ${e.code}`
+  incorrectLetters.textContent += ` ${e.key}`
   remainingGuesses.textContent = (10 - incorrect) 
-  // handle incorrect guess
 }
 }
 
-
-var remainingGuesses = document.getElementById('remaining-guesses') 
-var incorrectLetters = document.getElementById('incorrect-letters')
-var wins = document.getElementById('wins')
-var previousWord = document.getElementById('previous-word')
+//var previousWord = document.getElementById('previous-word')
+//previousWord.textContent = randomWord
 
 
-var correct = 0
-var incorrect = 0
+
+
 
