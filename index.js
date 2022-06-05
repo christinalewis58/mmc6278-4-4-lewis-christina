@@ -1,9 +1,10 @@
 var previousWord = document.getElementById('previous-word')
-previousWord.textContent = wordToGuess
+//previousWord.textContent = wordToGuess
 var incorrectLetters = document.getElementById('incorrect-letters')
 var remainingGuesses = document.getElementById('remaining-guesses') 
 var wins = document.getElementById('wins') 
 var losses = document.getElementById('losses')
+
 
 
 var correct = 0
@@ -46,11 +47,13 @@ if yes- replace underscore with letter
 if no - incorrect guessed letter should be added to incorrect-letters
 - remaining-guesses should reflect one fewer remaining guess*/
 
-
 document.onkeyup = function(e) {
 var key = e.key.toLowerCase()
-  // handle correct guess - stuck on line 50  
-if (randomWord.includes(key)) {
+  // handle correct guess  
+
+ 
+if (randomWord.includes(key)) 
+ { 
   const letters = randomWord.split('') 
   const index = letters.findIndex(letter => letter === key)
   const newWordArray = currentWord.split('')
@@ -59,16 +62,18 @@ if (randomWord.includes(key)) {
 
   console.log(newWordArray.join(''))
 
-    wordToGuess.textContent = currentWord
-    correct++
-    wins.textContent = (0 + correct)
+  wordToGuess.textContent = currentWord
+  correct++
+  wins.textContent = correct
   // handle incorrect guess
 } else {
   incorrect++
-  incorrectLetters.textContent += ` ${e.key}`
+  incorrectLetters.textContent += `${e.key}`
   remainingGuesses.textContent = (10 - incorrect) 
 }
 }
+
+
 
 
 
