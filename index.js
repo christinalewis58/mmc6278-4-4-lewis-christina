@@ -10,6 +10,9 @@ var incorrect = 0
 var win = 0;
 var loss = 0;
 
+var indexList = [];
+var previousWordList = [];
+
 var words = [
   'bananas',
   'grapes',
@@ -23,6 +26,8 @@ var words = [
   'ukulele',
   'mango'
 ]
+
+ 
 
 
 
@@ -42,32 +47,38 @@ var remainingGuesses = document.getElementById('remaining-guesses');remainingGue
 
 function startGame()
 {
+  previousWord.textContent = wordToGuess.textContent;
   random_index = Math.floor(Math.random() * words.length);
   randomWord = words[random_index];
   remainingGuesses = document.getElementById('remaining-guesses');remainingGuesses.textContent = (10)
   incorrectLetters.textContent = "";
-  alert("Word: "+randomWord);
+  wordToGuess = document.querySelector('h2')
+  wordToGuess.textContent = (randomWord.replace(/[a-z]/g, '_'))
+  console.log("Word: "+randomWord);
 }
 
 window.onload = function()
 {
-  alert("Word: "+randomWord);
+  console.log("Word: "+randomWord);
 }
 
 //when user guesses a letter, check whether letter is included in the word
 document.onkeyup = function(e) {
-let str = wordToGuess.textContent;
+let getString = wordToGuess.textContent;
 //alert(wordToGuess.textContent);
   var key = e.key.toLowerCase()
+ if(key.match(/[a-z]/))
+ {
   for(let i = 0; i < randomWord.length; i++)
-  {
-    if(key == randomWord[i])
-    {
-      str = str.substring(0,i)+key+str.substring(i+1); 
+  {//.includes(key) 
+    if(wordToGuess.textContent[i] != key&& key == randomWord[i])
+    { 
+      getString = getString.substring(0,i)+key+getString.substring(i+1); 
       wordToGuess.textContent = str; 
-      correct++;
+      correct++; 
+      //alert("Amount Correct: "+correct)
     }
-    else if(wordToGuess.textContent.includes(key) ==false&& i == randomWord.length - 1)//At the end
+    else if (wordToGuess.textContent.includes(key) ==false&& i == randomWord.length - 1) //At the end
     {
       incorrect++
       incorrectLetters.textContent += ` ${e.key}`
@@ -80,12 +91,17 @@ let str = wordToGuess.textContent;
       }
       break;
     }
-    if(correct == 10)
+    if(correct == randomWord.length)
     {
-      win++;
-      win.textContent = "Wins:: "+win;
-      startGame();
+        win++;
+        wins.textContent = win;
+        startGame();
     }
+  }
+  }
+  else
+  {
+    alert("Wrong character");
   }
 }
 // for (var i = 0; i < randomWord.length; i++) {
