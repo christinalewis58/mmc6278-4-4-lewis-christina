@@ -74,7 +74,7 @@ let getString = wordToGuess.textContent;
     if(wordToGuess.textContent[i] != key&& key == randomWord[i])
     { 
       getString = getString.substring(0,i)+key+getString.substring(i+1); 
-      wordToGuess.textContent = str; 
+      wordToGuess.textContent = getString; 
       correct++; 
       //alert("Amount Correct: "+correct)
     }
@@ -104,34 +104,3 @@ let getString = wordToGuess.textContent;
     alert("Wrong character");
   }
 }
-// for (var i = 0; i < randomWord.length; i++) {
-// document.onkeyup = function(e) {
-// var key = e.key.toLowerCase()
-//   // handle correct guess 
-// if (randomWord[i]==key) {//If we find a match
-//   alert("Index: "+i);
-//   // wordToGuess.textContent = randomWord.replace(randomWord, e.key)
-//   wordToGuess[i] = key;
-//   // handle incorrect guess
-// } else {
-//   alert("randomWord: "+randomWord+"\nKey: "+key);
-//   incorrect++
-//   incorrectLetters.textContent += ` ${e.key}`
-//   remainingGuesses.textContent = (10 - incorrect) 
-// }
-// }
-
-
-// }
-// when user gueses whole word correctly, wins should increase by one, next random word should be selected, and previous word should be displayed- reset all other elements
-
-
-//when remaining guesses are 0, reset to next game and losses should increase
-
-
-
-
-
-
-
-
